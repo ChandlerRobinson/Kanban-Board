@@ -1,45 +1,50 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import auth from '../utils/auth';
+import AuthService from '../utils/auth';
 
-const Navbar = () => {
-  const [ loginCheck, setLoginCheck ] = useState(false);
+const Navbar: React.FC = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const checkLogin = () => {
-    if(auth.loggedIn()) {
-      setLoginCheck(true);
-    }
+    // TODO: check if the user is logged in
+    setIsLoggedIn(AuthService.loggedIn());
   };
 
   useEffect(() => {
-    console.log(loginCheck);
+    // TODO: run the login check when the component mounts
     checkLogin();
-  }, [loginCheck])
+  }, []);
+
+  const handleLogout = () => {
+    // TODO: log the user out
+    AuthService.logout();
+    setIsLoggedIn(false);
+  };
 
   return (
-    <div className='nav'>
-      <div className='nav-title'>
-        <Link to='/'>Krazy Kanban Board</Link>
+    <div className="nav">
+      <div className="nav-title">
+        <Link to="/">Krazy Kanban Board</Link>
       </div>
       <ul>
-      {
-        !loginCheck ? (
-          <li className='nav-item'>
-            <button type='button'>
-              <Link to='/login'>Login</Link>
+        {!isLoggedIn ? (
+          <li className="nav-item">
+            <button type="button">
+              <Link to="/login">Login</Link>
             </button>
           </li>
         ) : (
-          <li className='nav-item'>
-            <button type='button' onClick={() => {
-              auth.logout();
-            }}>Logout</button>
+          <li className="nav-item">
+            <button type="button" onClick={handleLogout}>
+              Logout
+            </button>
           </li>
-        )
-      }
+        )}
       </ul>
     </div>
-  )
-}
+  );
+};
 
 export default Navbar;
+
+
