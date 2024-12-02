@@ -1,12 +1,11 @@
 import { Router } from 'express';
-import authRoutes from '../auth-routes'; // Correct path for 'auth-routes.ts'
-import { authenticateToken } from '../../middleware/auth'; // Correct path for middleware
+import { ticketRouter } from './ticket-routes.js';
+import { userRouter } from './user-routes.js';
 
 const router = Router();
 
-// Use authentication middleware for protected API routes
-router.use('/auth', authRoutes); // Authentication routes
-router.use(authenticateToken); // Apply authentication to all API routes
+router.use('/tickets', ticketRouter);
+router.use('/users', userRouter);
 
 export default router;
 

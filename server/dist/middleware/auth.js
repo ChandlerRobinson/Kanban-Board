@@ -17,7 +17,7 @@ const authenticateToken = (req, res, next) => {
     }
     try {
         // Verify the token using the secret key from environment variables
-        const secretKey = process.env.JWT_SECRET;
+        const secretKey = process.env.JWT_SECRET_KEY;
         const payload = jsonwebtoken_1.default.verify(token, secretKey);
         // TODO: Attach user information from the token to the request object
         req.user = payload;

@@ -22,7 +22,7 @@ export const authenticateToken = (req: Request, res: Response, next: NextFunctio
 
   try {
     // Verify the token using the secret key from environment variables
-    const secretKey = process.env.JWT_SECRET!;
+    const secretKey = process.env.JWT_SECRET_KEY!;
     const payload = jwt.verify(token, secretKey) as JwtPayload;
 
     // TODO: Attach user information from the token to the request object

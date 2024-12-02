@@ -35,7 +35,7 @@ const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         }
         console.log('JWT_SECRET_KEY:', process.env.JWT_SECRET_KEY);
         console.log("Password verified, generating token");
-        const token = jsonwebtoken_1.default.sign({ username: user.username, id: user.id }, process.env.JWT_SECRET, { expiresIn: "1h" });
+        const token = jsonwebtoken_1.default.sign({ username: user.username, id: user.id }, process.env.JWT_SECRET_KEY, { expiresIn: "1h" });
         console.log("Token generated successfully");
         return res.status(200).json({ token, message: "Login successful" });
     }

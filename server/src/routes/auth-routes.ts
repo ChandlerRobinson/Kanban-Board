@@ -26,7 +26,7 @@ export const login = async (req: Request, res: Response) => {
     console.log("Password verified, generating token");
     const token = jwt.sign(
       { username: user.username, id: user.id },
-      process.env.JWT_SECRET!,
+      process.env.JWT_SECRET_KEY!,
       { expiresIn: "1h" }
     );
 
